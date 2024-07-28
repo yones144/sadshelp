@@ -1,32 +1,55 @@
 body {
     font-family: Arial, sans-serif;
     text-align: center;
-    background-color: #f0f0f0;
+    background-color: #f0f0f0; /* لون الخلفية */
     margin: 0;
     padding: 0;
 }
+
 h1 {
     font-size: 36px;
     font-weight: bold;
-    color: #333;
+    color: #333; /* لون النص */
+    margin: 20px 0;
 }
+
 .subject-list, .teacher-list, .semester-list, .lecture-list {
     list-style-type: none;
     padding: 0;
 }
+
 .subject-list li, .teacher-list li, .semester-list li, .lecture-list li {
     margin: 10px 0;
 }
+
 .subject-list a, .teacher-list a, .semester-list a, .lecture-list a {
     text-decoration: none;
     font-size: 24px;
-    color: #007BFF;
+    color: #007BFF; /* لون الروابط */
 }
+
+.subject-list a:hover, .teacher-list a:hover, .semester-list a:hover, .lecture-list a:hover {
+    color: #0056b3; /* لون الروابط عند التمرير */
+}
+
 .footer {
     margin-top: 20px;
     font-size: 16px;
     color: #555;
+    padding: 10px;
+    background-color: #e0e0e0; /* لون الخلفية */
 }
+
 .video {
+    margin-top: 20px;
+}
+
+.container {
+    width: 80%;
+    margin: auto;
+    background-color: #fff; /* لون خلفية الحاوية */
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
     margin-top: 20px;
 }
