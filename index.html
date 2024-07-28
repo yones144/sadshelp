@@ -5,36 +5,80 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>منصة يونس</title>
     <link rel="stylesheet" href="style.css">
+    <!-- Firebase App (firebase-app.js) -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js"></script>
+    <!-- Firebase Firestore (firebase-firestore.js) -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore.js"></script>
+    <!-- Firebase Analytics (firebase-analytics.js) -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-analytics.js"></script>
+    <script>
+      // Your web app's Firebase configuration
+      const firebaseConfig = {
+        apiKey: "AIzaSyB32vGflJ82W2X9w_n9zjOkr1NeZinuER8",
+        authDomain: "yones-5c807.firebaseapp.com",
+        projectId: "yones-5c807",
+        storageBucket: "yones-5c807.appspot.com",
+        messagingSenderId: "789685354526",
+        appId: "1:789685354526:web:c991dc9606c5fa0073ae0f",
+        measurementId: "G-SCXZQJ0CJ0"
+      };
+
+      // Initialize Firebase
+      const app = firebase.initializeApp(firebaseConfig);
+      const analytics = firebase.analytics(app);
+    </script>
 </head>
 <body>
-    <div class="login-container">
-        <h2>تسجيل الدخول</h2>
-        <form id="loginForm">
-            <label for="code">كود الدخول:</label>
-            <input type="text" id="code" name="code" required>
-            <button type="submit">دخول</button>
-        </form>
-        <div id="error-message"></div>
+    <h1>منصة يونس</h1>
+    <ul class="subject-list">
+        <li><a href="subjects/physics.html">فيزياء</a></li>
+        <li><a href="subjects/chemistry.html">كيمياء</a></li>
+        <li><a href="subjects/biology.html">احياء</a></li>
+        <li><a href="subjects/islamic.html">اسلامية</a></li>
+        <li><a href="subjects/math.html">رياضيات</a></li>
+        <li><a href="subjects/arabic.html">عربي</a></li>
+        <li><a href="subjects/english.html">انكليزي</a></li>
+    </ul>
+    <div class="footer">
+        الحقوق محفوظة لدى <a href="https://t.me/tteiio">قناة سادس هيلب</a>
     </div>
+    
+    <!-- Code input form -->
+    <form id="codeForm">
+        <input type="text" id="codeInput" placeholder="أدخل الكود الخاص بك" required>
+        <button type="submit">تسجيل الدخول</button>
+    </form>
 
-    <div class="container" id="main-content" style="display:none;">
-        <h1>منصة يونس</h1>
-        <ul class="subject-list">
-            <li><a href="subjects/physics.html">فيزياء</a></li>
-            <li><a href="subjects/chemistry.html">كيمياء</a></li>
-            <li><a href="subjects/biology.html">احياء</a></li>
-            <li><a href="subjects/islamic.html">اسلامية</a></li>
-            <li><a href="subjects/math.html">رياضيات</a></li>
-            <li><a href="subjects/arabic.html">عربي</a></li>
-            <li><a href="subjects/english.html">انكليزي</a></li>
-        </ul>
-        <div class="footer">
-            الحقوق محفوظة لدى <a href="https://t.me/tteiio">قناة سادس هيلب</a>
-        </div>
-    </div>
+    <script>
+      // Firebase Firestore initialization
+      const db = firebase.firestore(app);
 
-    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-database.js"></script>
-    <script src="script.js"></script>
+      const verifyCode = (code) => {
+        db.collection('codes').doc(code).get()
+          .then((doc) => {
+            if (doc.exists) {
+              if (!doc.data().used) {
+                console.log('الكود صحيح ولم يُستخدم.');
+                // Update the code as used
+                db.collection('codes').doc(code).update({ used: true });
+                // Handle successful login (e.g., redirect or show a success message)
+              } else {
+                console.error('الكود تم استخدامه بالفعل.');
+              }
+            } else {
+              console.error('كود غير صحيح.');
+            }
+          })
+          .catch((error) => {
+            console.error('خطأ في التحقق من الكود:', error);
+          });
+      };
+
+      document.getElementById('codeForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        const code = document.getElementById('codeInput').value;
+        verifyCode(code);
+      });
+    </script>
 </body>
 </html>
