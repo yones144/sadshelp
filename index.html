@@ -5,27 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>منصة يونس</title>
     <link rel="stylesheet" href="style.css">
-    <!-- Firebase App (firebase-app.js) -->
-    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js"></script>
-    <!-- Firebase Firestore (firebase-firestore.js) -->
-    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore.js"></script>
-    <!-- Firebase Analytics (firebase-analytics.js) -->
-    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js"></script>
+    <script src="firebase-config.js"></script>
     <script>
-      // Your web app's Firebase configuration
-      const firebaseConfig = {
-        apiKey: "AIzaSyB32vGflJ82W2X9w_n9zjOkr1NeZinuER8",
-        authDomain: "yones-5c807.firebaseapp.com",
-        projectId: "yones-5c807",
-        storageBucket: "yones-5c807.appspot.com",
-        messagingSenderId: "789685354526",
-        appId: "1:789685354526:web:c991dc9606c5fa0073ae0f",
-        measurementId: "G-SCXZQJ0CJ0"
-      };
+      import { getAuth, onAuthStateChanged } from 'firebase/auth';
 
-      // Initialize Firebase
-      const app = firebase.initializeApp(firebaseConfig);
-      const analytics = firebase.analytics(app);
+      const auth = getAuth();
+
+      onAuthStateChanged(auth, user => {
+        if (!user) {
+          window.location.href = 'login.html'; // توجيه إلى صفحة تسجيل الدخول إذا لم يكن المستخدم مسجلاً الدخول
+        }
+      });
     </script>
 </head>
 <body>
@@ -42,43 +34,5 @@
     <div class="footer">
         الحقوق محفوظة لدى <a href="https://t.me/tteiio">قناة سادس هيلب</a>
     </div>
-    
-    <!-- Code input form -->
-    <form id="codeForm">
-        <input type="text" id="codeInput" placeholder="أدخل الكود الخاص بك" required>
-        <button type="submit">تسجيل الدخول</button>
-    </form>
-
-    <script>
-      // Firebase Firestore initialization
-      const db = firebase.firestore(app);
-
-      const verifyCode = (code) => {
-        db.collection('codes').doc(code).get()
-          .then((doc) => {
-            if (doc.exists) {
-              if (!doc.data().used) {
-                console.log('الكود صحيح ولم يُستخدم.');
-                // Update the code as used
-                db.collection('codes').doc(code).update({ used: true });
-                // Handle successful login (e.g., redirect or show a success message)
-              } else {
-                console.error('الكود تم استخدامه بالفعل.');
-              }
-            } else {
-              console.error('كود غير صحيح.');
-            }
-          })
-          .catch((error) => {
-            console.error('خطأ في التحقق من الكود:', error);
-          });
-      };
-
-      document.getElementById('codeForm').addEventListener('submit', function(event) {
-        event.preventDefault();
-        const code = document.getElementById('codeInput').value;
-        verifyCode(code);
-      });
-    </script>
 </body>
 </html>
