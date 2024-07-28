@@ -1,7 +1,8 @@
 body {
     font-family: Arial, sans-serif;
     text-align: center;
-    background-color: #f0f0f0; /* لون الخلفية */
+    background-color: #FF0000; /* لون الخلفية الأحمر */
+    color: #FFFFFF; /* لون النص الأبيض */
     margin: 0;
     padding: 0;
 }
@@ -9,8 +10,11 @@ body {
 h1 {
     font-size: 36px;
     font-weight: bold;
-    color: #333; /* لون النص */
+    color: #FFFFFF; /* لون النص الأبيض */
     margin: 20px 0;
+    border: 2px solid #000000; /* إطار باللون الأسود */
+    padding: 10px;
+    display: inline-block;
 }
 
 .subject-list, .teacher-list, .semester-list, .lecture-list {
@@ -25,19 +29,24 @@ h1 {
 .subject-list a, .teacher-list a, .semester-list a, .lecture-list a {
     text-decoration: none;
     font-size: 24px;
-    color: #007BFF; /* لون الروابط */
+    color: #FFFFFF; /* لون الروابط الأبيض */
+    border: 2px solid #000000; /* إطار باللون الأسود */
+    padding: 5px;
+    display: inline-block;
 }
 
 .subject-list a:hover, .teacher-list a:hover, .semester-list a:hover, .lecture-list a:hover {
-    color: #0056b3; /* لون الروابط عند التمرير */
+    color: #CCCCCC; /* لون الروابط عند التمرير */
 }
 
 .footer {
     margin-top: 20px;
     font-size: 16px;
-    color: #555;
+    color: #FFFFFF;
     padding: 10px;
-    background-color: #e0e0e0; /* لون الخلفية */
+    background-color: #D80000; /* لون خلفية التذييل */
+    border: 2px solid #000000; /* إطار باللون الأسود */
+    display: inline-block;
 }
 
 .video {
@@ -47,9 +56,10 @@ h1 {
 .container {
     width: 80%;
     margin: auto;
-    background-color: #fff; /* لون خلفية الحاوية */
+    background-color: #FF6666; /* لون خلفية الحاوية */
     padding: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
     margin-top: 20px;
+    border: 2px solid #000000; /* إطار باللون الأسود */
 }
