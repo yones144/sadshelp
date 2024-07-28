@@ -7,19 +7,34 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <h1>منصة يونس</h1>
-    <ul class="subject-list">
-        <li><a href="subjects/physics.html">فيزياء</a></li>
-        <li><a href="subjects/chemistry.html">كيمياء</a></li>
-        <li><a href="subjects/biology.html">احياء</a></li>
-        <li><a href="subjects/islamic.html">اسلامية</a></li>
-        <li><a href="subjects/math.html">رياضيات</a></li>
-        <li><a href="subjects/arabic.html">عربي</a></li>
-        <li><a href="subjects/english.html">انكليزي</a></li>
-    </ul>
-    <div class="footer">
-        الحقوق محفوظة لدى <a href="https://t.me/tteiio">قناة سادس هيلب</a>
+    <div class="login-container">
+        <h2>تسجيل الدخول</h2>
+        <form id="loginForm">
+            <label for="code">كود الدخول:</label>
+            <input type="text" id="code" name="code" required>
+            <button type="submit">دخول</button>
+        </form>
+        <div id="error-message"></div>
     </div>
+
+    <div class="container" id="main-content" style="display:none;">
+        <h1>منصة يونس</h1>
+        <ul class="subject-list">
+            <li><a href="subjects/physics.html">فيزياء</a></li>
+            <li><a href="subjects/chemistry.html">كيمياء</a></li>
+            <li><a href="subjects/biology.html">احياء</a></li>
+            <li><a href="subjects/islamic.html">اسلامية</a></li>
+            <li><a href="subjects/math.html">رياضيات</a></li>
+            <li><a href="subjects/arabic.html">عربي</a></li>
+            <li><a href="subjects/english.html">انكليزي</a></li>
+        </ul>
+        <div class="footer">
+            الحقوق محفوظة لدى <a href="https://t.me/tteiio">قناة سادس هيلب</a>
+        </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-database.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
